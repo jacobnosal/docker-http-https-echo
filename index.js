@@ -89,8 +89,8 @@ app.all('*', (req, res) => {
 });
 
 const sslOpts = {
-  key: require('fs').readFileSync('privkey.pem'),
-  cert: require('fs').readFileSync('fullchain.pem'),
+  key: require('fs').readFileSync(process.env.PRIVATE_KEY_FILE || 'privkey.pem'),
+  cert: require('fs').readFileSync(process.env.FULLCHAIN_PEM_FILE || 'fullchain.pem'),
 };
 
 var httpServer = http.createServer(app).listen(process.env.HTTP_PORT || 8080);
